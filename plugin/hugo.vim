@@ -61,11 +61,12 @@ function! HugoPost(title)
     let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:hugo_post_suffix
     echo "Making that post " . file_name
     exe "e " . g:hugo_path . g:hugo_post_dirs . file_name
-
     let template = ["---", "title: \"" . title . "\"", "date: " . created, "image: ", "tags: ", "  - "]
     call extend(template,["---", ""])
 
-    let err = append(0, template)
+    if getline(".") != ''
+      let err = append(0, template)
+    endif
   else
     call s:error("You must specify a title")
   endif
