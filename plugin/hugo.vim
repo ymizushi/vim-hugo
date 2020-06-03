@@ -64,7 +64,7 @@ function! HugoPost(title)
     let template = ["---", "title: \"" . title . "\"", "date: " . created, "image: ", "tags: ", "  - "]
     call extend(template,["---", ""])
 
-    if getline(".") != ''
+    if getline(".") == ''
       let err = append(0, template)
     endif
   else
